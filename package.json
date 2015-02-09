@@ -1,0 +1,40 @@
+{
+  "name": "gulp-react",
+  "author": "Felix A. Mercado",
+  "license": "ISC",
+  "version": "1.0.0",
+  "description": "A test project to develop the scaffolding for a glup-react-flux application.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "browser-sync": "^2.0.0-rc8",
+    "browserify": "^8.1.3",
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "gulp-concat": "^2.4.3",
+    "gulp-jshint": "^1.9.2",
+    "gulp-less": "^2.0.1",
+    "gulp-minify-css": "^0.4.5",
+    "gulp-run": "^1.6.6",
+    "gulp-uglify": "^1.1.0",
+    "reactify": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
+  },
+  "paths": {
+    "less": "assets/less/*.less",
+    "js": "./app/**/*.js",
+    "jsx": "./app/**/*.jsx",
+    "app": "./app/app.js",
+    "html": "*.html"
+  },
+  "dest": {
+    "style": "style.css",
+    "app": "app.js",
+    "dist": "dist"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

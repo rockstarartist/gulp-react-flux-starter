@@ -1,0 +1,28 @@
+{
+  "name": "gulp-react",
+  "version": "2.0.2",
+  "homepage": "n/a",
+  "authors": [
+    "Rock S. Artist <rockstarartist@gmail.com>"
+  ],
+  "description": "A project that tests out react, flux, gulp, and browserify",
+  "main": "index.js",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.12.2",
+    "bootstrap": "~3.3.2",
+    "font-awesome": "~4.3.0",
+    "lodash": "~3.1.0",
+    "underscore.string": "~3.0.2"
+  }
+}
