@@ -12,6 +12,7 @@ var gulp = require('gulp'),
     buffer = require('vinyl-buffer'),
     reactify = require('reactify'),
     package = require('./package.json'),
+    mainBowerFiles = require('main-bower-files'),
     reload = browserSync.reload;
 
 /**
@@ -19,6 +20,38 @@ var gulp = require('gulp'),
  */
 gulp.task('bower', function() {
   run('bower install').exec();
+})
+
+/**
+ * Create Bower dependency files for Development
+ * 
+ */
+var jsoptions = {
+
+      // Set the base path for your bower components
+      base: './bower_components',
+      
+      debugger: true,
+
+      // Only return the JavaScript files
+      filter: /.*\.js$/i
+    };
+gulp.task('mainBowerJSFiles-dev', function() {
+  return gulp.src(mainBowerFiles(jsoptions))
+    .pipe(concat(package.dest.vendorlibs))
+    .pipe(gulp.dest(package.dest.dist))
+})
+
+/**
+ * Create Bower dependency files for Production
+ * 
+ */
+gulp.task('mainBowerJSFiles-production', function() {
+  return gulp.src(mainBowerFiles(jsoptions))
+    .pipe(concat(package.dest.vendorlibs))
+    .pipe(buffer())
+    .pipe(uglify())
+    .pipe(gulp.dest(package.dest.dist))
 })
 
 /**
@@ -86,14 +119,14 @@ gulp.task('bower', function() {
 /**
  * Compiling resources and serving application
  */
-.task('serve', ['bower', 'clean', 'lint', 'less', 'js', 'server'], function() {
+.task('serve', ['bower', 'clean', 'lint', 'less', 'js', 'server', 'mainBowerJSFiles-dev'], function() {
   return gulp.watch([
     package.paths.js, package.paths.jsx, package.paths.html, package.paths.less
   ], [
    'lint', 'less', 'js', browserSync.reload
   ]);
 })
-.task('serve:minified', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'server'], function() {
+.task('serve:minified', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'server', 'mainBowerJSFiles-production'], function() {
   return gulp.watch([
     package.paths.js, package.paths.jsx, package.paths.html, package.paths.less
   ], [
