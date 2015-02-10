@@ -126,7 +126,7 @@ gulp.task('mainBowerJSFiles-production', function() {
    'lint', 'less', 'js', browserSync.reload
   ]);
 })
-.task('serve:minified', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'server', 'mainBowerJSFiles-production'], function() {
+.task('serve:production', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'server', 'mainBowerJSFiles-production'], function() {
   return gulp.watch([
     package.paths.js, package.paths.jsx, package.paths.html, package.paths.less
   ], [
