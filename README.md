@@ -4,11 +4,11 @@ A starter project that will use gulp, react, and flux. Front end dependency mana
 This is still a work in progress(Current Fixes under development):
 * Flux has not been integrated, and automatic injection of bower dependencies is not in.
 * Vendor CSS and Font files need to be concatenated and moved into the dist folder via a gulp task.
-* The JSXTransformer.js needs to be concatenated into the vendors.js during a gulp build.
+* The JSXTransformer.js needs to be concatenated into the vendors.js during a gulp dev build.
 * Code cleanup is needed, in addition to unit test examples and integration of unit test frameworks.
 * Gulp tasks need to be broken out and placed into their own special folder.
-* POM.xml file needs to be created to allow simple project import into Netbeans, Eclipes and other IDE's.
-* POM.xml file that calls gulp and npm tasks to simplify development from IDE's.
+* Gulp tasks need a test task to match the pom file test goal.
+* Need to browserify bower components.
 
 Currently, you can build the application and serve it.
 
