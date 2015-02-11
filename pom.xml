@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <name>Gulp Browserify React Skeleton</name>
+    <groupId>io.github.rockstarartist</groupId>
+    <artifactId>gulpskeleton-reactbrowserify</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="gui-clean">
+                                <exec dir="${basedir}" executable="rm">
+                                    <arg value="-rf"/>
+                                    <arg value="dist"/>
+                                    <arg value="node_modules"/>
+                                    <arg value="bower_components"/>
+                                </exec>
+                                <exec dir="${basedir}" executable="mkdir">
+                                    <arg value="dist"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="gui-compile">
+                                <exec dir="${basedir}" executable="npm">
+                                    <arg value="install"/>
+                                </exec>
+                                <exec dir="${basedir}" executable="bower" failonerror="true">
+                                    <arg value="install"/>
+                                </exec>
+                                <exec dir="${basedir}" executable="gulp" failonerror="true">
+                                    <arg value="serve"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="gui-unit-tests" unless="${skipTests}">
+                                <exec dir="${basedir}" executable="gulp" failonerror="true">
+                                    <arg value="test"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.2</version>
+                <configuration>
+                    <descriptors>
+                        <descriptor>assembly/maven/assembly.xml</descriptor>
+                    </descriptors>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase> <!-- bind to the packaging phase -->
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+
