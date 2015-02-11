@@ -24,6 +24,7 @@
     "font-awesome": "~4.3.0",
     "lodash": "~3.1.0",
     "underscore.string": "~3.0.2",
-    "d3": "~3.5.4"
+    "d3": "~3.5.4",
+    "jquery": "~2.1.3"
   }
 }

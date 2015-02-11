@@ -6,7 +6,9 @@
 
     var sampleData = [
         {id: '5fbmzmtc', x: 7, y: 41, z: 6},
-        {id: 's4f8phwm', x: 11, y: 45, z: 9}
+        {id: 's4f8phwm', x: 11, y: 45, z: 9},
+        {id: 's4f8phw1', x: 5, y: 32, z: 3},
+        {id: 's4f8phw2', x: 8, y: 18, z: 12}
     ];
 
     module.exports = React.createClass({

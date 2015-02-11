@@ -7,7 +7,7 @@ module.exports = React.createClass({
       render: function() {
         return (
           <div className="commentBox">
-            Hello, world! I am a .JSX React Created CommentBox.
+            This is a .JSX React created Text Box.
           </div>
         );
       }
