@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    gutil = require('gulp-util'),
     del = require('del'),
     run = require('gulp-run'),
     less = require('gulp-less'),
@@ -40,6 +41,7 @@ gulp.task('mainBowerJSFiles-dev', function() {
   return gulp.src(mainBowerFiles(jsoptions))
     .pipe(concat(package.dest.vendorlibs))
     .pipe(gulp.dest(package.dest.dist))
+    .on('error', gutil.log);
 })
 
 /**
@@ -52,6 +54,7 @@ gulp.task('mainBowerJSFiles-production', function() {
     .pipe(buffer())
     .pipe(uglify())
     .pipe(gulp.dest(package.dest.dist))
+    .on('error', gutil.log);
 })
 
 /**
@@ -79,14 +82,16 @@ gulp.task('mainBowerJSFiles-production', function() {
   return gulp.src(package.paths.less)
   .pipe(less())
   .pipe(concat(package.dest.style))
-  .pipe(gulp.dest(package.dest.dist));
+  .pipe(gulp.dest(package.dest.dist))
+  .on('error', gutil.log);
 })
 .task('less:min', function() {
   return gulp.src(package.paths.less)
   .pipe(less())
   .pipe(concat(package.dest.style))
   .pipe(cssmin())
-  .pipe(gulp.dest(package.dest.dist));
+  .pipe(gulp.dest(package.dest.dist))
+  .on('error', gutil.log);
 })
 
 /**
@@ -95,7 +100,8 @@ gulp.task('mainBowerJSFiles-production', function() {
 .task('lint', function() {
   return gulp.src(package.paths.js)
   .pipe(jshint())
-  .pipe(jshint.reporter('default'));
+  .pipe(jshint.reporter('default'))
+  .on('error', gutil.log);
 })
 
 /** JavaScript compilation */
@@ -104,7 +110,8 @@ gulp.task('mainBowerJSFiles-production', function() {
   .transform(reactify)
   .bundle()
   .pipe(source(package.dest.app))
-  .pipe(gulp.dest(package.dest.dist));
+  .pipe(gulp.dest(package.dest.dist))
+  .on('error', gutil.log);
 })
 .task('js:min', function() {
   return browserify(package.paths.app)
@@ -113,7 +120,8 @@ gulp.task('mainBowerJSFiles-production', function() {
   .pipe(source(package.dest.app))
   .pipe(buffer())
   .pipe(uglify())
-  .pipe(gulp.dest(package.dest.dist));
+  .pipe(gulp.dest(package.dest.dist))
+  .on('error', gutil.log);
 })
 
 /**
