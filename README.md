@@ -3,7 +3,6 @@ A starter project that will use gulp, react, and flux. Front end dependency mana
 
 This is still a work in progress(Current Fixes under development):
 * Flux has not been integrated, and automatic injection of bower dependencies is not in.
-* Vendor CSS and Font files need to be concatenated and moved into the dist folder via a gulp task.
 * The JSXTransformer.js needs to be concatenated into the vendors.js during a gulp dev build.
 * Code cleanup is needed, in addition to unit test examples and integration of unit test frameworks.
 * Gulp tasks need to be broken out and placed into their own special folder.
@@ -22,4 +21,3 @@ Currently, you can build the application and serve it.
  * This will automatically watch any changes you make into the codebase and show updates at `http://localhost:3000/`
 * Run `gulp serve:production`
  * This will minify/uglify/concatenate css, javascript etc., leaving you with a project ready for deployment.
-
