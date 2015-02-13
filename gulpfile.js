@@ -58,6 +58,58 @@ gulp.task('mainBowerJSFiles-production', function() {
 })
 
 /**
+ * Create Bower dependency css files for development
+ * 
+ */
+var cssoptions = {
+
+      // Set the base path for your bower components
+      base: './bower_components',
+      
+      debugger: true,
+
+      // Only return the css files
+      filter: /.*\.css$/i
+    };
+gulp.task('mainBowerCSSFiles-dev', function() {
+  return gulp.src(mainBowerFiles(cssoptions))
+    .pipe(concat(package.dest.vendorcss))
+    .pipe(gulp.dest(package.dest.dist))
+    .on('error', gutil.log);
+})
+/**
+ * Create Bower dependency css files for production
+ * 
+ */
+gulp.task('mainBowerCSSFiles-production', function() {
+  return gulp.src(mainBowerFiles(cssoptions))
+    .pipe(concat(package.dest.vendorcss))
+    .pipe(cssmin())
+    .pipe(gulp.dest(package.dest.dist))
+    .on('error', gutil.log);
+})
+
+/**
+ * Aggregate Bower dependency font files for development & production
+ * 
+ */
+var fontoptions = {
+
+      // Set the base path for your bower components
+      base: './bower_components',
+      
+      debugger: true,
+
+      // Only return the font files
+      filter: /.*\.eot$|.*\.otf$|.*\.svg$|.*\.ttf$|.*\.woff$|.*\.woff2$/i
+    };
+gulp.task('mainBowerFontFiles', function() {
+  return gulp.src(mainBowerFiles(fontoptions))
+    .pipe(gulp.dest(package.dest.fontdist))
+    .on('error', gutil.log);
+})
+
+/**
  * Cleaning dist/ folder
  */
 .task('clean', function(cb) {
@@ -127,14 +179,14 @@ gulp.task('mainBowerJSFiles-production', function() {
 /**
  * Compiling resources and serving application
  */
-.task('serve', ['bower', 'clean', 'lint', 'less', 'js', 'server', 'mainBowerJSFiles-dev'], function() {
+.task('serve', ['bower', 'clean', 'lint', 'less', 'js', 'server', 'mainBowerJSFiles-dev', 'mainBowerCSSFiles-dev', 'mainBowerFontFiles'], function() {
   return gulp.watch([
     package.paths.js, package.paths.jsx, package.paths.html, package.paths.less
   ], [
    'lint', 'less', 'js', browserSync.reload
   ]);
 })
-.task('serve:production', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'server', 'mainBowerJSFiles-production'], function() {
+.task('serve:production', ['bower', 'clean', 'lint', 'less:min', 'js:min', 'server', 'mainBowerJSFiles-production', 'mainBowerCSSFiles-production', 'mainBowerFontFiles'], function() {
   return gulp.watch([
     package.paths.js, package.paths.jsx, package.paths.html, package.paths.less
   ], [

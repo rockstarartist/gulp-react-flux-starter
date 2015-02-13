@@ -1,3 +1,4 @@
+/** @jsx React.DOM */
 
 (function (React, module, undefined) {
     var CommentBox = require('./components/commentbox.js');
@@ -26,6 +27,7 @@
                     <ReCommentBox/>
                     <Chart data={this.state.data} domain={this.state.domain}/>
                     <div> Everything Should Have Been Rendered now. </div>
+                    <i className="fa fa-camera-retro"></i> fa-camera-retro
                     </div>
                     );
         }

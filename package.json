@@ -32,10 +32,12 @@
     "html": "*.html"
   },
   "dest": {
-    "style": "style.css",
+    "style": "css/style.css",
     "app": "app.js",
     "vendorlibs": "vendor.js",
-    "dist": "dist"
+    "vendorcss": "css/vendor.css",
+    "dist": "dist",
+    "fontdist": "dist/fonts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
