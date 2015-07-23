@@ -10,14 +10,15 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     buffer = require('vinyl-buffer'),
     package = require('../../package.json'),
-    mainBowerFiles = require('main-bower-files');
+    mainBowerFiles = require('main-bower-files'),
+    browserify = require('browserify');
 
 /**
  * Running Bower
  */
 gulp.task('bower', function() {
   run('bower install').exec();
-})
+});
 
 /**
  * Create Bower dependency files for Development
@@ -38,7 +39,7 @@ gulp.task('mainBowerJSFiles-dev', function() {
     .pipe(concat(package.dest.vendorlibs))
     .pipe(gulp.dest(package.dest.dist))
     .on('error', gutil.log);
-})
+});
 
 /**
  * Create Bower dependency files for Production
@@ -51,7 +52,7 @@ gulp.task('mainBowerJSFiles-production', function() {
     .pipe(uglify())
     .pipe(gulp.dest(package.dest.dist))
     .on('error', gutil.log);
-})
+});
 
 /**
  * Create Bower dependency css files for development
@@ -72,7 +73,7 @@ gulp.task('mainBowerCSSFiles-dev', function() {
     .pipe(concat(package.dest.vendorcss))
     .pipe(gulp.dest(package.dest.dist))
     .on('error', gutil.log);
-})
+});
 
 /**
  * Create Bower dependency css files for production
@@ -84,7 +85,7 @@ gulp.task('mainBowerCSSFiles-production', function() {
     .pipe(cssmin())
     .pipe(gulp.dest(package.dest.dist))
     .on('error', gutil.log);
-})
+});
 
 /**
  * Aggregate Bower dependency font files for development & production
@@ -104,5 +105,5 @@ gulp.task('mainBowerFontFiles', function() {
   return gulp.src(mainBowerFiles(fontoptions))
     .pipe(gulp.dest(package.dest.fontdist))
     .on('error', gutil.log);
-})
+});
 

@@ -10,7 +10,9 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
-    reactify = require('reactify'),
+    reactify = require('babelify'),
+    //reactify = require('reactify'), this was working
+    //reactify = require('gulp-react');
     package = require('../../package.json');
     
 /**
@@ -25,8 +27,17 @@ gulp.task('lint', function() {
 
 /** JavaScript compilation */
 .task('js', function() {
-  return browserify(package.paths.app)
-  .transform(reactify)
+  return browserify(
+        {
+            entries: [package.paths.app], // Only need initial file, browserify finds the deps
+            transform: [reactify], // We want to convert JSX to normal javascript
+            extensions: "jsx",
+            debug: true, // Gives us sourcemapping
+            cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
+        }
+       )
+//  return browserify(package.paths.app)
+//  .transform(reactify)
   .bundle()
   .pipe(source(package.dest.app))
   .pipe(gulp.dest(package.dest.dist))

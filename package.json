@@ -1,12 +1,15 @@
 {
-  "name": "gulp-react",
+  "name": "gulp-react-flux-skeleton",
   "author": "Felix A. Mercado",
   "license": "ISC",
   "version": "1.0.0",
   "description": "A test project to develop the scaffolding for a glup-react-flux application.",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-react": "^3.0.0"
+  },
   "devDependencies": {
+    "babelify": "^6.1.3",
     "bower": "^1.3.12",
     "browser-sync": "^2.0.0-rc8",
     "browserify": "^8.1.3",
@@ -20,7 +23,6 @@
     "gulp-uglify": "^1.1.0",
     "gulp-util": "^3.0.3",
     "main-bower-files": "^2.5.0",
-    "reactify": "^1.0.0",
     "require-dir": "^0.1.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0"
@@ -37,10 +39,16 @@
     "app": "app.js",
     "vendorlibs": "vendor.js",
     "vendorcss": "css/vendor.css",
+    "tempfolder": "temp",
     "dist": "dist",
     "fontdist": "dist/fonts"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
   }
 }
