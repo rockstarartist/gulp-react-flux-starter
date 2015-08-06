@@ -5,12 +5,13 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     less = require('gulp-less'),
+    //sass = require('gulp-sass'),
     cssmin = require('gulp-minify-css'),
     concat = require('gulp-concat'),
     source = require('vinyl-source-stream'),
     package = require('../../package.json');
     
-gulp.task('less', function() {
+gulp.task('styles', function() {
   return gulp.src(package.paths.less)
   .pipe(less())
   .pipe(concat(package.dest.style))
@@ -18,7 +19,7 @@ gulp.task('less', function() {
   .on('error', gutil.log);
 })
 
-.task('less:min', function() {
+.task('styles:min', function() {
   return gulp.src(package.paths.less)
   .pipe(less())
   .pipe(concat(package.dest.style))

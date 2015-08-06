@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
-    reactify = require('babelify'),
+    babelify = require('babelify'),
     //reactify = require('reactify'), this was working
     //reactify = require('gulp-react');
     package = require('../../package.json');
@@ -30,14 +30,12 @@ gulp.task('lint', function() {
   return browserify(
         {
             entries: [package.paths.app], // Only need initial file, browserify finds the deps
-            transform: [reactify], // We want to convert JSX to normal javascript
+            transform: [babelify], // We want to convert JSX to normal javascript
             extensions: "jsx",
             debug: true, // Gives us sourcemapping
             cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
         }
        )
-//  return browserify(package.paths.app)
-//  .transform(reactify)
   .bundle()
   .pipe(source(package.dest.app))
   .pipe(gulp.dest(package.dest.dist))
@@ -45,8 +43,15 @@ gulp.task('lint', function() {
 })
 
 .task('js:min', function() {
-  return browserify(package.paths.app)
-  .transform(reactify)
+  return browserify(
+      {
+          entries: [package.paths.app], // Only need initial file, browserify finds the deps
+          transform: [babelify], // We want to convert JSX to normal javascript
+          extensions: "jsx",
+          debug: false, // Gives us sourcemapping
+          cache: {}, packageCache: {}, fullPaths: true // Requirement of watchify
+      }
+  )
   .bundle()
   .pipe(source(package.dest.app))
   .pipe(buffer())
