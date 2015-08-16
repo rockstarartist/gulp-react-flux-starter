@@ -12,6 +12,7 @@ Currently, you can build the application and serve it.
 * Install gulp via nodejs: `npm install -g gulp`
 * Install project dependencies: `npm install`
 * Run `gulp serve`
- * This will automatically watch any changes you make into the codebase and show updates at `http://localhost:3000/`
+ * This will automatically watch any changes you make into the codebase and show updates at `http://localhost:3000/` (You may need to refresh your browser when you first run gulp serve)
 * Run `gulp serve:production`
  * This will minify/uglify/concatenate css, javascript etc., leaving you with a project ready for deployment.
+
