@@ -1,6 +1,11 @@
 # gulp-react-flux-starter
 A starter project that will use gulp, react, and flux. Front end dependency management is provided by bower, module system is browserify.
 
+SASS is used for SCSS, you can still use just css if you prefer.
+
+This project is now ES6 enhanced, so you can develop your codebase in ES6, you can also continue to use ES5
+if you prefer.
+
 This is still a work in progress, please see issues at https://github.com/rockstarartist/gulp-react-flux-starter/issues
 
 Currently, you can build the application and serve it.
