@@ -16,6 +16,7 @@ Currently, you can build the application and serve it.
 * Install bower plugins: `bower install`
 * Install gulp via nodejs: `npm install -g gulp`
 * Install project dependencies: `npm install`
+* Make sure you have ruby installed on your system (If you are on MacOSX or Linux, you probably already have ruby, type ruby -v in your terminal to make sure.), then type gem install scss-lint in your terminal.
 * Run `gulp serve`
  * This will automatically watch any changes you make into the codebase and show updates at `http://localhost:3000/` (You may need to refresh your browser when you first run gulp serve)
 * Run `gulp serve:production`

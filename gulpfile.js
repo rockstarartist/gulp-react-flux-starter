@@ -22,7 +22,7 @@ requireDir('./assembly/gulp', { recurse: true });
 /**
  * Compiling resources and serving application.
  */
-gulp.task('serve', ['bower', 'clean', 'lint', 'styles', 'js', 'server', 'mainBowerJSFiles-dev', 'mainBowerCSSFiles-dev', 'mainBowerFontFiles'], function() {
+gulp.task('serve', ['bower', 'clean', 'lint', 'scsslint', 'styles', 'js', 'server', 'mainBowerJSFiles-dev', 'mainBowerCSSFiles-dev', 'mainBowerFontFiles'], function() {
   return gulp.watch([
     package.paths.js, package.paths.jsx, package.paths.html, package.paths.less
   ], [
@@ -33,7 +33,7 @@ gulp.task('serve', ['bower', 'clean', 'lint', 'styles', 'js', 'server', 'mainBow
 /**
  * Compiling resources and serving application for production.
  */
-.task('serve:production', ['bower', 'clean', 'lint', 'styles:min', 'js:min', 'server', 'mainBowerJSFiles-production', 'mainBowerCSSFiles-production', 'mainBowerFontFiles'], function() {
+.task('serve:production', ['bower', 'clean', 'lint', 'scsslint', 'styles:min', 'js:min', 'server', 'mainBowerJSFiles-production', 'mainBowerCSSFiles-production', 'mainBowerFontFiles'], function() {
   return gulp.watch([
     package.paths.js, package.paths.jsx, package.paths.html, package.paths.less
   ], [
