@@ -11,8 +11,6 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
     babelify = require('babelify'),
-    //reactify = require('reactify'), this was working
-    //reactify = require('gulp-react');
     package = require('../../package.json');
     
 /**
